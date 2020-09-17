@@ -24,6 +24,7 @@ const App = () => {
   const startQuiz = async () => {
     setLoading(true);
     setGameOver(false);
+    setUserAnswers([]);
     setCheckAns(false);
     const newQuestions = await fetchQuiz(TotalQuestions, Difficulty.EASY);
     setQuestions(newQuestions);
@@ -66,48 +67,48 @@ const App = () => {
     <>
       <BodyStyle />
       <ContainerWrapper>
-        <div className="App">
-          <h1>Quiz Time</h1>
-          {gameOver || userAnswers.length === TotalQuestions ? (
-            <button className="startQuiz" onClick={startQuiz}>
-              Start Quiz
-            </button>
-          ) : null}
-          {userAnswers.length > 0 ? (
-            <p className="score">{`Your score: ${score}/${TotalQuestions}`}</p>
-          ) : null}
+        <h1>Quiz Time</h1>
+        {gameOver || userAnswers.length === TotalQuestions ? (
+          <button className="startQuiz" onClick={startQuiz}>
+            Start Quiz
+          </button>
+        ) : null}
+        {userAnswers.length > 0 ? (
+          <p className="score">{`Your score: ${score}/${TotalQuestions}`}</p>
+        ) : null}
 
-          {loading && <p>Loading Questions...</p>}
+        {loading && <p>Loading Questions...</p>}
 
-          {checkAns ? null : (
-            <div>
-              {!loading && !gameOver && (
-                <QuestionsCard
-                  quesNumber={questionNr + 1}
-                  totalQuestions={TotalQuestions}
-                  question={questions[questionNr].question}
-                  answers={questions[questionNr].answers}
-                  callback={checkAnswer}
-                  userAnswer={userAnswers ? userAnswers[questionNr] : undefined}
-                />
-              )}
-              {!gameOver &&
-              !loading &&
-              userAnswers.length === questionNr + 1 &&
-              questionNr !== TotalQuestions - 1 ? (
-                <button className="nextQuestion" onClick={nextQuestion}>
-                  Next
-                </button>
-              ) : null}
-            </div>
-          )}
-          {userAnswers.length === TotalQuestions && !checkAns && (
-            <button className="checkButton" onClick={answersCheck}>
-              check your answers
-            </button>
-          )}
-          {checkAns && <AllQuestionsAnswers userAnswers={userAnswers} />}
-        </div>
+        {checkAns ? null : (
+          <div>
+            {!loading && !gameOver && (
+              <QuestionsCard
+                quesNumber={questionNr + 1}
+                totalQuestions={TotalQuestions}
+                question={questions[questionNr].question}
+                answers={questions[questionNr].answers}
+                callback={checkAnswer}
+                userAnswer={userAnswers ? userAnswers[questionNr] : undefined}
+              />
+            )}
+          </div>
+        )}
+
+        {!gameOver &&
+        !loading &&
+        userAnswers.length === questionNr + 1 &&
+        questionNr !== TotalQuestions - 1 ? (
+          <button className="nextQuestion" onClick={nextQuestion}>
+            Next
+          </button>
+        ) : null}
+
+        {userAnswers.length === TotalQuestions && !checkAns && (
+          <button className="checkButton" onClick={answersCheck}>
+            check your answers
+          </button>
+        )}
+        {checkAns && <AllQuestionsAnswers userAnswers={userAnswers} />}
       </ContainerWrapper>
     </>
   );

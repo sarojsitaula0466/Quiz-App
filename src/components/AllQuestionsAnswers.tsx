@@ -16,19 +16,15 @@ const AllQuestionsAnswers: React.FC<Props> = ({ userAnswers }) => {
       <div>
         {userAnswers.map((ans: any) => (
           <AnswersWrapper key={ans}>
-            <div className="answersDiv">
-              <div>
-                <p dangerouslySetInnerHTML={{ __html: ans.question }} />
-              </div>
-              <div className="quesAns">
-                <p dangerouslySetInnerHTML={{ __html: ans.correctAnswer }} />
-              </div>
-              {ans.correct ? (
-                <p className="correct">Correct</p>
-              ) : (
-                <p className="incorrect">Inorrect</p>
-              )}
-            </div>
+            <p dangerouslySetInnerHTML={{ __html: ans.question }} />
+
+            <p dangerouslySetInnerHTML={{ __html: ans.correctAnswer }} />
+
+            {ans.correct ? (
+              <p className="correct">Correct</p>
+            ) : (
+              <p className="incorrect">Inorrect</p>
+            )}
           </AnswersWrapper>
         ))}
       </div>
