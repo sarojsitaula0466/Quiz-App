@@ -6,7 +6,8 @@ export const BodyStyle = createGlobalStyle`
     height: 100%;
   }
   body {
-    background-image:url(${bgImage});
+    //background-image:url(${bgImage});
+    background-color:#000;
     margin: 0;
     padding: 0 20px;
     display: flex;
@@ -24,11 +25,12 @@ export const ContainerWrapper = styled.div`
   align-items: center;
 
   .score {
-    color: #fff;
-    background-color: #d38558;
+    color: #000;
+    background-color: #add8e6;
     padding: 0.5rem 1.5rem;
     border-radius: 5px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    width:240px;
     margin: 0 auto 2rem;
   }
   h1 {
@@ -42,10 +44,12 @@ export const ContainerWrapper = styled.div`
     cursor: pointer;
     background: #23395d;
     color: #fff;
+    font-size:1rem;
     border: 2px solid #d38558;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     height: 40px;
+    width:240px;
     margin: 20px auto;
     padding: 0 40px;
   }
